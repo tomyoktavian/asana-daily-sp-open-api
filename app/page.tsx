@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Blocks, ChevronRight, Loader2, Moon, Sun } from "lucide-react";
+import { Blocks, ChevronRight, Github, Loader2, Moon, Sun } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -51,7 +51,21 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
-      <div className="fixed top-4 right-4 z-50">
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
+        <Button
+          variant="outline"
+          size="icon"
+          asChild
+        >
+          <a
+            href="https://github.com/tomyoktavian/asana-daily-sp-open-api"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Github className="h-5 w-5" />
+            <span className="sr-only">GitHub Repository</span>
+          </a>
+        </Button>
         <Button variant="outline" size="icon" onClick={toggleTheme}>
           <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

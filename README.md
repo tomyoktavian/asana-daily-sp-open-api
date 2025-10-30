@@ -14,13 +14,13 @@ Monitor task Asana langsung dari Visual Studio Code!
 
 ### Download Extension
 
-Download VSCode Extension (`.vsix`) dari folder `public`:
+Download VSCode Extension (`.vsix`):
 
 📥 [Download dari GitHub](https://daily-sp-asana.vercel.app)
 
 ### Cara Install
 
-1. Download file `.vsix` dari folder public
+1. Download file `.vsix`
 2. Buka VSCode
 3. Tekan `Ctrl+Shift+P` (Windows/Linux) atau `Cmd+Shift+P` (Mac)
 4. Ketik `Extensions: Install from VSIX`

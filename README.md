@@ -6,6 +6,36 @@ Aplikasi web untuk memantau dan melacak task Asana dengan mudah dan efisien. Men
 
 ![Dashboard - Dark Mode](/public/img/dark-banner.jpg)
 
+## 🔌 VSCode Extension
+
+Monitor task Asana langsung dari Visual Studio Code!
+
+![Extension Preview](/public/img/extension-preview.jpg)
+
+### Download Extension
+
+Download VSCode Extension (`.vsix`) dari folder `public`:
+
+📥 [Download dari GitHub](https://github.com/tomyoktavian/asana-daily-sp-open-api/tree/main/public)
+
+### Cara Install
+
+1. Download file `.vsix` dari folder public
+2. Buka VSCode
+3. Tekan `Ctrl+Shift+P` (Windows/Linux) atau `Cmd+Shift+P` (Mac)
+4. Ketik `Extensions: Install from VSIX`
+5. Pilih file `.vsix` yang sudah didownload
+6. Reload VSCode
+
+### Fitur Extension
+
+- ✅ Monitor story point hari ini & kemarin
+- ✅ Filter task berdasarkan status (completed/incomplete)
+- ✅ Date range picker (Hari Ini, Kemarin, Minggu 1-4)
+- ✅ Refresh data real-time
+- ✅ Dark mode support
+- ✅ Link langsung ke web dashboard
+
 ## ✨ Fitur
 
 - 🔐 **Autentikasi dengan Personal Access Token** - Login aman menggunakan Asana PAT
@@ -13,27 +43,6 @@ Aplikasi web untuk memantau dan melacak task Asana dengan mudah dan efisien. Men
 - 📋 **Task Management** - Lihat dan filter task berdasarkan status (selesai/belum selesai)
 - 📅 **Date Range Picker** - Filter task berdasarkan tanggal dengan shortcuts (Hari Ini, Kemarin, Minggu 1-4, dll)
 - 🌓 **Dark Mode** - Tema gelap dan terang dengan smooth transition
-
-## 🛠️ Tech Stack
-
-- **Framework**: [Next.js 16.0.1](https://nextjs.org/) (App Router)
-- **UI Library**: [React 19](https://react.dev/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **Components**: [shadcn/ui](https://ui.shadcn.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Data Fetching**: [TanStack Query](https://tanstack.com/query)
-- **HTTP Client**: [Axios](https://axios-http.com/)
-- **Date Manipulation**: [Day.js](https://day.js.org/)
-- **Theme**: [next-themes](https://github.com/pacocoursey/next-themes)
-- **Runtime**: [Bun](https://bun.sh/)
-
-## 📋 Prerequisites
-
-Sebelum memulai, pastikan sudah terinstall:
-
-- **Node.js** versi 20 atau lebih tinggi
-- **Bun** (package manager) - [Install Bun](https://bun.sh/)
-- **Asana Personal Access Token** - [Dapatkan di sini](https://app.asana.com/0/my-apps)
 
 ## 🚀 Instalasi
 
@@ -62,12 +71,6 @@ NEXTAUTH_SECRET=your-secret-key-change-this-in-production
 ```
 
 > **Note**: `ASANA_PERSONAL_ACCESS_TOKEN` bisa dikosongkan jika menggunakan login via UI
-
-4. **Generate secret key** (opsional)
-
-```bash
-openssl rand -base64 32
-```
 
 Masukkan hasilnya ke `NEXTAUTH_SECRET` di `.env.local`
 
@@ -140,52 +143,9 @@ bun start        # Jalankan production server
 bun lint         # Check code dengan ESLint
 ```
 
-## 🎨 Struktur Project
-
-```
-asana/
-├── app/                    # Next.js App Router
-│   ├── api/               # API Routes
-│   │   ├── auth/         # Authentication endpoints
-│   │   ├── tasks/        # Task endpoints
-│   │   └── total-story-point/
-│   ├── dashboard/        # Dashboard page
-│   ├── globals.css       # Global styles
-│   ├── layout.tsx        # Root layout
-│   └── page.tsx          # Landing page
-├── components/            # React components
-│   └── ui/               # UI components (shadcn)
-├── hooks/                # Custom React hooks
-├── lib/                  # Utilities
-│   ├── axios.ts         # Axios instance
-│   ├── react-query.tsx  # TanStack Query config
-│   └── utils.ts         # Helper functions
-├── types/                # TypeScript types
-│   ├── components.ts    # Component types
-│   ├── hooks.ts         # Hook types
-│   └── lib.ts           # Library types
-└── public/               # Static assets
-    └── img/             # Images
-```
-
-## 🔧 Konfigurasi Lanjutan
-
-### Custom Workspace/Project
-
-Edit di `lib/axios.ts` untuk mengubah workspace atau project ID:
-
-```typescript
-const WORKSPACE_GID = "your-workspace-id";
-const PROJECT_GID = "your-project-id";
-```
-
 ## 🤝 Contributing
 
 Contributions, issues, dan feature requests are welcome!
-
-## 📝 License
-
-This project is licensed under the MIT License.
 
 ## 👤 Author
 

@@ -13,8 +13,8 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
-  const [token, setToken] = useState("2/1201927017294106/1211547354542943:550a9498f866c95b5488e9e9fde445c6");
-  // const [token, setToken] = useState("");
+  // const [token, setToken] = useState("2/1201927017294106/1211547354542943:550a9498f866c95b5488e9e9fde445c6");
+  const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { theme, setTheme } = useTheme();
@@ -83,7 +83,11 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="group cursor-pointer mb-6 w-max relative mx-auto flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]">
+          <a 
+            href="/asana-daily-report-0.1.0.vsix" 
+            download
+            className="group cursor-pointer mb-6 w-max relative mx-auto flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
+          >
             <span
               className={cn(
                 "animate-gradient absolute inset-0 block h-full w-full rounded-[inherit] bg-gradient-to-r from-[#ffaa40]/50 via-[#9c40ff]/50 to-[#ffaa40]/50 bg-[length:300%_100%] p-[1px]"
@@ -103,7 +107,7 @@ export default function Home() {
               Dapatkan Ekstensi untuk VSCode
             </AnimatedGradientText>
             <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-          </div>
+          </a>
 
           <Card className="max-w-md mx-auto mb-12">
             <CardHeader>
@@ -165,14 +169,14 @@ export default function Home() {
             <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-5xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
               <Image
                 className="bg-background aspect-16/11 relative hidden rounded-2xl dark:block"
-                src="/img/dark-banner.jpg"
+                src="/img/dark-banners.jpg"
                 alt="Asana Dashboard Preview - Dark Mode"
                 width="2700"
                 height="1440"
               />
               <Image
                 className="z-2 border-border/25 aspect-16/11 relative rounded-2xl border dark:hidden"
-                src="/img/light-banner.jpg"
+                src="/img/light-banners.jpg"
                 alt="Asana Dashboard Preview - Light Mode"
                 width="2700"
                 height="1440"

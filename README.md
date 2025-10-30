@@ -16,7 +16,7 @@ Monitor task Asana langsung dari Visual Studio Code!
 
 Download VSCode Extension (`.vsix`) dari folder `public`:
 
-📥 [Download dari GitHub](https://github.com/tomyoktavian/asana-daily-sp-open-api/tree/main/public)
+📥 [Download dari GitHub](https://daily-sp-asana.vercel.app)
 
 ### Cara Install
 

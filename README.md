@@ -4,7 +4,7 @@ Aplikasi web untuk memantau dan melacak task Asana dengan mudah dan efisien. Men
 
 ## 📸 Preview
 
-![Dashboard - Dark Mode](/public/img/dark-banner.jpg)
+![Dashboard - Dark Mode](/public/img/dark-banners.jpg)
 
 ## 🔌 VSCode Extension
 

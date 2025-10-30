@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
+    },
+    "asana": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp.asana.com/sse"
+      ],
+      "env": {}
+    },
+    "tailwindcss-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "tailwindcss-mcp-server"
+      ]
+    },
+    "next-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "next-devtools-mcp@latest"
+      ]
+    }
+  }
+}

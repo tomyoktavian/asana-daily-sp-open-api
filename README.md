@@ -6,26 +6,25 @@ Aplikasi web untuk memantau dan melacak task Asana dengan mudah dan efisien. Men
 
 ![Dashboard - Dark Mode](/public/img/dark-banners.jpg)
 
-## 🔌 VSCode Extension
+## 🔌 Extension for VSCode, Cursor, Windsurf
 
-Monitor task Asana langsung dari Visual Studio Code!
+Monitor task Asana langsung dari Code editor!
 
 ![Extension Preview](/public/img/extension-preview.jpg)
 
 ### Download Extension
 
-Download VSCode Extension (`.vsix`):
+Download Extension (`.vsix`):
 
 📥 [Download dari GitHub](https://daily-sp-asana.vercel.app)
 
 ### Cara Install
 
 1. Download file `.vsix`
-2. Buka VSCode
+2. Buka VSCode, Cursor, Windsurf, atau editor lainnya
 3. Tekan `Ctrl+Shift+P` (Windows/Linux) atau `Cmd+Shift+P` (Mac)
 4. Ketik `Extensions: Install from VSIX`
 5. Pilih file `.vsix` yang sudah didownload
-6. Reload VSCode
 
 ### Fitur Extension
 

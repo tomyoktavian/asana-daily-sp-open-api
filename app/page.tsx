@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Blocks, ChevronRight, Github, Loader2, Moon, Sun } from "lucide-react";
@@ -26,7 +32,9 @@ export default function Home() {
 
   const setTokenMutation = useMutation({
     mutationFn: async (token: string) => {
-      const response = await axiosInstance.post("/api/auth/set-token", { token });
+      const response = await axiosInstance.post("/api/auth/set-token", {
+        token,
+      });
       return response.data;
     },
     onSuccess: () => {
@@ -62,11 +70,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
-        <Button
-          variant="outline"
-          size="icon"
-          asChild
-        >
+        <Button variant="outline" size="icon" asChild>
           <a
             href="https://github.com/tomyoktavian/asana-daily-sp-open-api"
             target="_blank"
@@ -93,31 +97,37 @@ export default function Home() {
             </p>
           </div>
 
-          <a 
-            href="/asana-daily-report-0.1.0.vsix" 
-            download
-            className="group cursor-pointer mb-6 w-max relative mx-auto flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
-          >
-            <span
-              className={cn(
-                "animate-gradient absolute inset-0 block h-full w-full rounded-[inherit] bg-gradient-to-r from-[#ffaa40]/50 via-[#9c40ff]/50 to-[#ffaa40]/50 bg-[length:300%_100%] p-[1px]"
-              )}
-              style={{
-                WebkitMask:
-                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "destination-out",
-                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                maskComposite: "subtract",
-                WebkitClipPath: "padding-box",
-              }}
-            />
-            <Blocks className="w-4 h-4 text-blue-500"/>
-            <hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" />
-            <AnimatedGradientText className="text-sm font-medium">
-              Dapatkan Ekstensi untuk VSCode
-            </AnimatedGradientText>
-            <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-          </a>
+          <div className="flex flex-col gap-2 mb-6">
+            <a
+              href="/asana-daily-report-0.1.0.vsix"
+              download
+              className="group cursor-pointer w-max relative mx-auto flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
+            >
+              <span
+                className={cn(
+                  "animate-gradient absolute inset-0 block h-full w-full rounded-[inherit] bg-gradient-to-r from-[#ffaa40]/50 via-[#9c40ff]/50 to-[#ffaa40]/50 bg-[length:300%_100%] p-[1px]"
+                )}
+                style={{
+                  WebkitMask:
+                    "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                  WebkitMaskComposite: "destination-out",
+                  mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                  maskComposite: "subtract",
+                  WebkitClipPath: "padding-box",
+                }}
+              />
+              <Blocks className="w-4 h-4 text-blue-500" />
+              <hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" />
+              <AnimatedGradientText className="text-sm font-medium">
+                Dapatkan Ekstensi (.vsix)
+              </AnimatedGradientText>
+              <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+            </a>
+
+            <p className="text-center text-muted-foreground text-sm">
+              Extension tersedia untuk VSCode, Cursor, Windsurf.
+            </p>
+          </div>
 
           <Card className="max-w-md mx-auto mb-12">
             <CardHeader>
@@ -150,7 +160,11 @@ export default function Home() {
                     </a>
                   </p>
                 </div>
-                <Button type="submit" className="w-full" disabled={setTokenMutation.isPending}>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={setTokenMutation.isPending}
+                >
                   {setTokenMutation.isPending ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -161,17 +175,6 @@ export default function Home() {
                   )}
                 </Button>
               </form>
-              <p className="text-xs text-muted-foreground mt-2">
-                Referensi API di:{" "}
-                <a
-                  href="https://developers.asana.com/reference/tasks"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  Asana open API
-                </a>
-              </p>
             </CardContent>
           </Card>
 

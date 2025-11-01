@@ -37,15 +37,11 @@ export default function Home() {
       });
       return response.data;
     },
-    onSuccess: () => {
+    onSuccess: (response) => {
       router.push("/dashboard");
-      toast.success("Berhasil login", {
+      toast.success(`Hallo 👋 ${response.user.name}`, {
         duration: 5000,
-        position: "top-right",
-        action: {
-          label: "Tutup",
-          onClick: () => toast.dismiss(),
-        },
+        position: "top-center",
       });
     },
     onError: (error: Error) => {

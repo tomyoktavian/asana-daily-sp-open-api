@@ -11,11 +11,12 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { cn } from "@/lib/utils";
+import { useMutation } from "@tanstack/react-query";
+import axiosInstance from "@/lib/axios";
+import { toast } from "sonner";
 
 export default function Home() {
-  // const [token, setToken] = useState("2/1201927017294106/1211547354542943:550a9498f866c95b5488e9e9fde445c6");
   const [token, setToken] = useState("");
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { theme, setTheme } = useTheme();
 
@@ -23,30 +24,39 @@ export default function Home() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  const setTokenMutation = useMutation({
+    mutationFn: async (token: string) => {
+      const response = await axiosInstance.post("/api/auth/set-token", { token });
+      return response.data;
+    },
+    onSuccess: () => {
+      router.push("/dashboard");
+      toast.success("Berhasil login", {
+        duration: 5000,
+        position: "top-right",
+        action: {
+          label: "Tutup",
+          onClick: () => toast.dismiss(),
+        },
+      });
+    },
+    onError: (error: Error) => {
+      console.error("Error:", error);
+      toast.error("Token tidak valid", {
+        description: error.message,
+        duration: 5000,
+        position: "top-center",
+        action: {
+          label: "Tutup",
+          onClick: () => toast.dismiss(),
+        },
+      });
+    },
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
-    try {
-      const response = await fetch("/api/auth/set-token", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
-
-      if (response.ok) {
-        router.push("/dashboard");
-      } else {
-        alert("Token tidak valid");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Terjadi kesalahan");
-    } finally {
-      setLoading(false);
-    }
+    setTokenMutation.mutate(token);
   };
 
   return (
@@ -140,8 +150,8 @@ export default function Home() {
                     </a>
                   </p>
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? (
+                <Button type="submit" className="w-full" disabled={setTokenMutation.isPending}>
+                  {setTokenMutation.isPending ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Memverifikasi...

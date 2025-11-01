@@ -1,11 +1,19 @@
 import { calculateTotalStoryPoint } from "./story-point";
 import { AsanaTask, AsanaUser } from "@/types/lib";
+import axios from "axios";
 
 export class AsanaClient {
   private accessToken: string;
+  private axiosInstance;
 
   constructor(accessToken: string) {
     this.accessToken = accessToken;
+    this.axiosInstance = axios.create({
+      baseURL: 'https://app.asana.com/api/1.0',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+      },
+    });
   }
 
   private async _fetchTasksFromAPI(params: {
@@ -43,56 +51,27 @@ export class AsanaClient {
         ...(offset && { offset }),
       });
       
-      const url = `https://app.asana.com/api/1.0/workspaces/${params.workspaceGid}/tasks/search?${queryParams}`;
-      
-      const response = await fetch(url, {
-        headers: {
-          'Authorization': `Bearer ${this.accessToken}`,
-        },
-      });
+      const response = await this.axiosInstance.get(
+        `/workspaces/${params.workspaceGid}/tasks/search`,
+        { params: Object.fromEntries(queryParams) }
+      );
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Failed to fetch tasks: ${response.status} - ${errorText}`);
-      }
-
-      const data = await response.json();
-      allTasks = allTasks.concat(data.data);
+      allTasks = allTasks.concat(response.data.data);
       
-      offset = data.next_page?.offset;
+      offset = response.data.next_page?.offset;
     } while (offset);
 
     return allTasks.filter((task) => task.num_subtasks === 0);
   }
 
   async getMe(): Promise<AsanaUser> {
-    const response = await fetch('https://app.asana.com/api/1.0/users/me', {
-      headers: {
-        'Authorization': `Bearer ${this.accessToken}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch user');
-    }
-
-    const data = await response.json();
-    return data.data;
+    const response = await this.axiosInstance.get('/users/me');
+    return response.data.data;
   }
 
   async getWorkspaces() {
-    const response = await fetch('https://app.asana.com/api/1.0/workspaces', {
-      headers: {
-        'Authorization': `Bearer ${this.accessToken}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch workspaces');
-    }
-
-    const data = await response.json();
-    return data.data;
+    const response = await this.axiosInstance.get('/workspaces');
+    return response.data.data;
   }
 
   async getTasks(params: {

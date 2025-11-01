@@ -185,12 +185,14 @@ export function TaskList() {
           </div>
         ) : (
           <div className="space-y-3">
-            <Alert className="mb-6" variant="warning">
-              <TriangleAlert />
-              <AlertTitle>
-                Maksimal task yang dapat ditampilkan adalah 100
-              </AlertTitle>
-            </Alert>
+            {tasks.length >= 100 && (
+              <Alert className="mb-6" variant="warning">
+                <TriangleAlert />
+                <AlertTitle>
+                  Maksimal task yang dapat ditampilkan adalah 100
+                </AlertTitle>
+              </Alert>
+            )}
             {tasks.map((task) => (
               <a
                 key={task.gid}

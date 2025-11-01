@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import axios from 'axios';
 
 export async function GET(request: NextRequest) {
   // Get token from Authorization header or query param
@@ -11,17 +12,13 @@ export async function GET(request: NextRequest) {
 
   try {
     // Get user info
-    const userResponse = await fetch('https://app.asana.com/api/1.0/users/me', {
+    const userResponse = await axios.get('https://app.asana.com/api/1.0/users/me', {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
     });
 
-    if (!userResponse.ok) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
-
-    const userData = await userResponse.json();
+    const userData = userResponse.data;
     const userGid = userData.data.gid;
     const userName = userData.data.name;
     const userEmail = userData.data.email;
@@ -45,6 +42,15 @@ export async function GET(request: NextRequest) {
       workspaces: workspaces
     });
   } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 401) {
+        return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+      }
+      return NextResponse.json(
+        { error: 'Failed to fetch user data', details: error.message },
+        { status: error.response?.status || 500 }
+      );
+    }
     return NextResponse.json(
       { error: 'Failed to fetch user data', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
